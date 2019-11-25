@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Neue Frage:</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="questionForm">
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Fragentyp" required formControlName="type">
+        <mat-option>None</mat-option>
+        <mat-option value="{{type.id}}" *ngFor="let type of questionTypes">{{type.type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Frage" required formControlName="question"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Antwort" required formControlName="answer"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Ausgang" required formControlName="outcome">
+        <mat-option>None</mat-option>
+        <mat-option value="{{outcomes[0].id}}">Wahr</mat-option>
+        <mat-option value="{{outcomes[1].id}}">Falsch</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button [disabled]="!questionForm.valid" mat-raised-button color="primary" (click)="create()">
+      Hinzufügen
+    </button>
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Schließen</button>
+</div>

@@ -1,0 +1,26 @@
+
+<h1 mat-dialog-title>Quiz-Übersicht</h1>
+<div mat-dialog-content>
+  <div class="container">
+    <button class="float-right" mat-raised-button color="primary" (click)="openCreateQuestion()">
+      <i class="material-icons">add_box</i>
+    </button>
+    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+      <mat-label>
+        <h3>{{quiz.name}}</h3>
+      </mat-label>
+      <mat-list *ngFor="let question of quiz.question">
+        <mat-list-item>
+            <p class="question">Frage {{question.id}}: {{question.value}}</p>
+        </mat-list-item>
+        <mat-list-item *ngFor="let answer of question.answer">
+          <p>Antwort {{answer.id}}: {{answer.value}}</p>
+        </mat-list-item>
+      </mat-list>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Schließen</button>
+</div>
+
