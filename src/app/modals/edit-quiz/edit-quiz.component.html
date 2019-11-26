@@ -14,7 +14,7 @@
             <p class="question">Frage {{question.id}}: {{question.value}}</p>
         </mat-list-item>
         <mat-list-item *ngFor="let answer of question.answer">
-          <p>Antwort {{answer.id}}: {{answer.value}}</p>
+          <p>Antwort: {{answer.value}} ({{!answer.outcome.value?'wahr':'falsch'}})</p>
         </mat-list-item>
       </mat-list>
     </cdk-virtual-scroll-viewport>

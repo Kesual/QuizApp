@@ -10,9 +10,9 @@
 
         <div class="row">
           <mat-form-field class="selection">
-            <mat-select placeholder="Quiz" required [formControl]="select" *ngFor="let q of quiz">
+            <mat-select placeholder="Quiz" required [formControl]="select">
               <mat-option>None</mat-option>
-              <mat-option value="{{q.id}}">{{q.name}}</mat-option>
+              <mat-option value="{{q.id}}" *ngFor="let q of quiz">{{q.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="select.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>

@@ -64,6 +64,8 @@ export class CreateQuestionComponent implements OnInit {
         data => {
           console.log('success', data);
         },
-        error => console.log('oops', error));
+        error => console.log('oops', error)).add(() => {
+          this.onNoClick();
+    });
   }
 }
