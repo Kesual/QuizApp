@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Quiz zu Ende</h1>
+
+<div mat-dialog-content>
+  <h3>Du hast {{data.points}} Punkte erreicht!</h3>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [routerLink]="['select']" routerLinkActive="active" (click)="onNoClick()">Zurück zur Übersicht</button>
+</div>

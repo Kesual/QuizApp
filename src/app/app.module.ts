@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
+  MAT_DIALOG_DEFAULT_OPTIONS,
   MatButtonModule,
   MatCardModule, MatDialogModule,
   MatFormFieldModule,
@@ -26,6 +27,7 @@ import { AnswerModalComponent } from './modals/answer-modal/answer-modal.compone
 import { EditQuizComponent } from './modals/edit-quiz/edit-quiz.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { CreateQuestionComponent } from './modals/create-question/create-question.component';
+import { EndOfQuizModalComponent } from './modals/end-of-quiz-modal/end-of-quiz-modal.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { CreateQuestionComponent } from './modals/create-question/create-questio
     DashboardComponent,
     AnswerModalComponent,
     EditQuizComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    EndOfQuizModalComponent
   ],
   imports: [
     BrowserModule,
@@ -66,8 +69,11 @@ import { CreateQuestionComponent } from './modals/create-question/create-questio
     AnswerModalComponent,
     EditQuizComponent,
     CreateQuestionComponent,
+    EndOfQuizModalComponent,
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

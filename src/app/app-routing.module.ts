@@ -7,19 +7,19 @@ import {PlayComponent} from './quiz/play/play.component';
 
 
 const routes: Routes = [
-  { path: 'base', component: MainComponent },
+  { path: 'main', component: MainComponent },
   { path: 'select', component: SelectComponent },
   { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'play/:id', component: PlayComponent },
   { path: '',
-    redirectTo: 'base',
+    redirectTo: 'main',
     pathMatch: 'full'
   },
   { path: '**', component: MainComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

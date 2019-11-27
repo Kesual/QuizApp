@@ -8,6 +8,7 @@ import {Question} from '../../models/Question';
 import {FormControl, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 import {AnswerModalComponent} from '../../modals/answer-modal/answer-modal.component';
+import {EndOfQuizModalComponent} from '../../modals/end-of-quiz-modal/end-of-quiz-modal.component';
 
 @Component({
   selector: 'app-play',
@@ -24,6 +25,7 @@ export class PlayComponent implements OnInit {
   c: Question;
   answerField = new FormControl('', Validators.required);
   nextQuestion = true;
+  public points = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +58,7 @@ export class PlayComponent implements OnInit {
         width: '400px',
         data: {answer: this.c.answer[0].value, result: 'Richtig'}
       });
+      this.points += 1;
     } else {
       this.dialog.open(AnswerModalComponent, {
         width: '400px',
@@ -66,9 +69,21 @@ export class PlayComponent implements OnInit {
   }
 
   displayQuestion() {
-    const rand = Math.floor(Math.random() * this.questionArray.length);
-    this.c = this.questionArray[rand];
-    this.questionArray.splice(rand, 1);
+
+    if (this.quiz.question.length === 0) {
+      this.endOfQuiz();
+    } else {
+      const rand = Math.floor(Math.random() * this.questionArray.length);
+      this.c = this.questionArray[rand];
+      this.questionArray.splice(rand, 1);
+      this.nextQuestion = false;
+    }
+  }
+
+  endOfQuiz() {
     this.nextQuestion = false;
+    this.dialog.open(EndOfQuizModalComponent, {
+      data: {points: this.points}, disableClose: true
+    });
   }
 }

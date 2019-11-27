@@ -1,6 +1,24 @@
 
 <div class="container">
-  <mat-card>
+
+  <!-- TODO: Counter einbauen + Ende des Quizzes -->
+
+  <div class="container">
+    <mat-card class="points">
+      <mat-card-header>
+        <mat-card-title>
+          <span>Deine Punkte:</span>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <h3>{{points}}</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+  <mat-card class="mainCard">
     <mat-card-header>
       <mat-card-subtitle>
         {{quiz.name}}
@@ -10,9 +28,6 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-
-      <!-- TODO: Counter einbauen + Ende des Quizzes -->
-
       <div class="row">
         <h3>
           {{c.value}}
@@ -42,4 +57,4 @@
   </mat-card>
 </div>
 
-<!--pre style="color: azure">{{quiz | json}}</pre-->
+<pre style="color: azure">{{quiz | json}}</pre>

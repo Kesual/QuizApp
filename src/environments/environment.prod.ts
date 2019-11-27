@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://mimopie.feste-ip.net:16964/QuizAppBackend/server.php/api/',
+  baseUrl: 'http://localhost:80/QuizAppBackend/server.php/api',
 };
