@@ -83,6 +83,7 @@ export class PlayComponent implements OnInit {
   endOfQuiz() {
     this.nextQuestion = false;
     this.dialog.open(EndOfQuizModalComponent, {
+      width: '500px',
       data: {points: this.points}, disableClose: true
     });
   }

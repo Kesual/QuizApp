@@ -28,6 +28,7 @@ import { EditQuizComponent } from './modals/edit-quiz/edit-quiz.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { CreateQuestionComponent } from './modals/create-question/create-question.component';
 import { EndOfQuizModalComponent } from './modals/end-of-quiz-modal/end-of-quiz-modal.component';
+import { AddQuizModalComponent } from './modals/add-quiz-modal/add-quiz-modal.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EndOfQuizModalComponent } from './modals/end-of-quiz-modal/end-of-quiz-
     AnswerModalComponent,
     EditQuizComponent,
     CreateQuestionComponent,
-    EndOfQuizModalComponent
+    EndOfQuizModalComponent,
+    AddQuizModalComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { EndOfQuizModalComponent } from './modals/end-of-quiz-modal/end-of-quiz-
     EditQuizComponent,
     CreateQuestionComponent,
     EndOfQuizModalComponent,
+    AddQuizModalComponent,
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}

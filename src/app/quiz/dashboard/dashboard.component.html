@@ -8,7 +8,7 @@
     </mat-card-header>
     <mat-card-content>
 
-      <button mat-raised-button color="primary" [routerLink]="['/play', quiz.id]" routerLinkActive="active">
+      <button [disabled]="startQuiz()" mat-raised-button color="primary" [routerLink]="['/play', quiz.id]" routerLinkActive="active">
         <mat-label>
           Quiz starten
         </mat-label>

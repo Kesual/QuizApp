@@ -46,4 +46,8 @@ export class DashboardComponent implements OnInit {
       autoFocus: true,
       data: {id: this.qId}});
   }
+
+  startQuiz() {
+    return this.quiz.question.length === 0;
+  }
 }
