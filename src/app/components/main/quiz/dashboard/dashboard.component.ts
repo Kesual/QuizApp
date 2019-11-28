@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Quiz} from '../../models/Quiz';
+import {Quiz} from '../../../models/Quiz';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {AnswerModalComponent} from '../../modals/answer-modal/answer-modal.component';
-import {EditQuizComponent} from '../../modals/edit-quiz/edit-quiz.component';
+import {environment} from '../../../../../environments/environment';
+import {EditQuizComponent} from '../../../modals/edit-quiz/edit-quiz.component';
 import {MatDialog} from '@angular/material';
+import {QuizService} from '../../../service/quiz.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,15 +15,12 @@ import {MatDialog} from '@angular/material';
 })
 export class DashboardComponent implements OnInit {
 
-  baseUrl = environment.baseUrl;
-  api = '/quiz/';
-  qId;
-  quiz: Quiz;
+  public qId: number;
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public service: QuizService,
   ) { }
 
   ngOnInit() {
@@ -32,22 +29,17 @@ export class DashboardComponent implements OnInit {
       this.qId = params.id;
     });
 
-    this.getQuizbyId().subscribe((r: Quiz) => {
-      this.quiz = r;
-    });
-  }
-
-  getQuizbyId(): Observable<Quiz> {
-    return this.http.get<Quiz>(this.baseUrl + this.api + this.qId);
+    this.service.getQuiz(this.qId);
   }
 
   openEditComponent() {
     this.dialog.open(EditQuizComponent, {width: '900px',
       autoFocus: true,
-      data: {id: this.qId}});
+      data: this.qId
+    });
   }
 
   startQuiz() {
-    return this.quiz.question.length === 0;
+    return this.service.quiz.question.length === 0;
   }
 }

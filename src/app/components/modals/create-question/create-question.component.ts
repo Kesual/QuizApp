@@ -3,9 +3,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Observable} from 'rxjs';
 import {QuestionType} from '../../models/QuestionType';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {Outcome} from '../../models/Outcome';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {QuizService} from '../../service/quiz.service';
 
 @Component({
   selector: 'app-create-question',
@@ -24,9 +25,10 @@ export class CreateQuestionComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service: QuizService,
   ) { }
 
   ngOnInit() {
@@ -59,12 +61,13 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   create() {
-    this.http.post(this.baseUrl + this.apiQuest, {data: this.questionForm.value, id: this.data.id})
+    this.http.post(this.baseUrl + this.apiQuest, {data: this.questionForm.value, id: this.data})
       .subscribe(
         data => {
           console.log('success', data);
         },
         error => console.log('oops', error)).add(() => {
+          this.service.getQuiz(this.service.quiz.id);
           this.onNoClick();
     });
   }

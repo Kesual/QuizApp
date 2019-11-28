@@ -1,0 +1,10 @@
+
+<h1 mat-dialog-title>Quiz löschen?</h1>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">
+    Nein, lieber nicht
+  </button>
+  <button mat-raised-button color="warn" (click)="delete()" [routerLink]="['main']">
+    Löschen
+  </button>
+</div>

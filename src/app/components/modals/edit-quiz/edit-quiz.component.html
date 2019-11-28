@@ -1,0 +1,43 @@
+
+<h1 mat-dialog-title>Quiz-Übersicht für {{service.quiz.name}}</h1>
+<div mat-dialog-content>
+  <div class="container">
+    <button title="Quiz löschen" class="float-right" mat-raised-button color="warn" (click)="openDeleteQuiz()">
+      <i class="material-icons">delete</i>
+    </button>
+    <button title="Neue Frage" class="float-right" mat-raised-button color="accent" (click)="openCreateQuestion()">
+      <i class="material-icons plus">add_box</i>
+    </button>
+    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+
+      <mat-progress-spinner
+        class="example-margin"
+        color="primary"
+        mode="indeterminate"
+        *ngIf="service.spinner">
+      </mat-progress-spinner>
+
+      <mat-list>
+        <mat-list-item *ngFor="let question of service.quiz.question">
+          <ul>
+            <li class="question">
+              <span>Frage {{question.id}}: {{question.value}}</span>
+            </li>
+            <li>
+              <ul>
+                <li class="answer" *ngFor="let answer of question.answer">Antwort: {{answer.value}}
+                  ({{!answer.outcome.value ? 'wahr' : 'falsch'}})
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Schließen</button>
+</div>
+

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {AddQuizModalComponent} from '../../modals/add-quiz-modal/add-quiz-modal.component';
+import {AddQuizModalComponent} from '../modals/add-quiz-modal/add-quiz-modal.component';
 
 @Component({
   selector: 'app-main',
