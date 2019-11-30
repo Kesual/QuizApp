@@ -21,8 +21,7 @@
     <mat-form-field class="example-full-width">
       <mat-select placeholder="Ausgang" required formControlName="outcome">
         <mat-option>None</mat-option>
-        <mat-option value="{{outcomes[0].id}}">Wahr</mat-option>
-        <mat-option value="{{outcomes[1].id}}">Falsch</mat-option>
+        <mat-option value="{{out.id}}" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
       </mat-select>
     </mat-form-field>
 

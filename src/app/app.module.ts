@@ -10,10 +10,10 @@ import {
   MatButtonModule,
   MatCardModule, MatDialogModule,
   MatFormFieldModule,
-  MatGridListModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
+  MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule, MatTreeModule
 } from '@angular/material';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -69,6 +69,8 @@ import { DeleteQuizModalComponent } from './components/modals/delete-quiz-modal/
     ScrollingModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatTreeModule,
+    MatIconModule,
   ],
   entryComponents: [
     AnswerModalComponent,

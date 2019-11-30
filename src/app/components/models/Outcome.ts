@@ -1,4 +1,4 @@
-export class Outcome {
+export interface Outcome {
   id;
-  value;
+  type;
 }

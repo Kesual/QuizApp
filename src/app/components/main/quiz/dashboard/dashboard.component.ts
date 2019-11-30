@@ -1,9 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Quiz} from '../../../models/Quiz';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {environment} from '../../../../../environments/environment';
 import {EditQuizComponent} from '../../../modals/edit-quiz/edit-quiz.component';
 import {MatDialog} from '@angular/material';
 import {QuizService} from '../../../service/quiz.service';
@@ -39,7 +35,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  startQuiz() {
-    return this.service.quiz.question.length === 0;
+  startQuiz(): boolean {
+    return this.service.quiz.question.length !== 0;
   }
 }

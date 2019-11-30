@@ -1,5 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material';
 import {CreateQuestionComponent} from '../create-question/create-question.component';
 import {DeleteQuizModalComponent} from '../delete-quiz-modal/delete-quiz-modal.component';
 import {QuizService} from '../../service/quiz.service';
@@ -16,7 +20,8 @@ export class EditQuizComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     public service: QuizService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {}
 

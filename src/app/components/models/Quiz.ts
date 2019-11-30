@@ -1,6 +1,6 @@
 import {Question} from './Question';
 
-export class Quiz {
+export interface Quiz {
   id;
   name;
   question: Question[];

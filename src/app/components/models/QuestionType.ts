@@ -1,4 +1,4 @@
-export class QuestionType {
+export interface QuestionType {
   id;
   type;
 }

@@ -17,23 +17,31 @@
         *ngIf="service.spinner">
       </mat-progress-spinner>
 
-      <mat-list>
-        <mat-list-item *ngFor="let question of service.quiz.question">
-          <ul>
-            <li class="question">
-              <span>Frage {{question.id}}: {{question.value}}</span>
-            </li>
-            <li>
-              <ul>
-                <li class="answer" *ngFor="let answer of question.answer">Antwort: {{answer.value}}
-                  ({{!answer.outcome.value ? 'wahr' : 'falsch'}})
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
+      <div class="list-group">
+        <div *ngFor="let question of service.quiz.question">
+        <div class="d-flex w-100 justify-content-between" >
+          <h5 class="mb-1">
+            Frage {{question.id}}: {{question.value}}
+          </h5>
+          <small>{{question.questionType.type}}</small>
+        </div>
+          <div *ngFor="let answer of question.answer">
+            <p class="mb-1 answer">
+              Antwort: {{answer.value}}
+            </p>
+            <div *ngIf="answer.outcome.type else elseblock">
+              <small class="right" >
+                ({{answer.outcome.type ? 'Wahr' : 'Falsch'}})
+              </small>
+            </div>
+            <ng-template #elseblock>
+              <small class="false">
+                ({{answer.outcome.type ? 'Wahr' : 'Falsch'}})
+              </small>
+            </ng-template>
+          </div>
+        </div>
+      </div>
     </cdk-virtual-scroll-viewport>
   </div>
 </div>
