@@ -1,25 +1,31 @@
 <div class="container">
 
   <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        {{this.service.quiz.name}}:
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+    <div *ngIf="service.spinner else Elseblock">
+      <mat-spinner mode="indeterminate"></mat-spinner>
+    </div>
+    <ng-template #Elseblock>
+      <mat-card-header>
+        <mat-card-title>
+          {{this.service.Quiz.name}}:
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
 
-      <button [disabled]="!startQuiz()" mat-raised-button color="primary" [routerLink]="['/play']" routerLinkActive="active">
-        <mat-label>
-          Quiz starten
-        </mat-label>
-      </button>
-      <button mat-raised-button color="primary" class="float-right" (click)="openEditComponent()">
-        <mat-label>
-          {{this.service.quiz.name}} bearbeiten
-        </mat-label>
-      </button>
+        <button [disabled]="!startQuiz()" mat-raised-button color="primary" [routerLink]="['/play']" routerLinkActive="active">
+          <mat-label>
+            Quiz starten
+          </mat-label>
+        </button>
+        <button mat-raised-button color="primary" class="float-right" (click)="openEditComponent()">
+          <mat-label>
+            {{this.service.Quiz.name}} bearbeiten
+          </mat-label>
+        </button>
 
-    </mat-card-content>
+      </mat-card-content>
+    </ng-template>
+
   </mat-card>
 
 </div>

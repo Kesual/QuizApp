@@ -14,16 +14,52 @@
       <textarea matInput placeholder="Frage" required formControlName="question"></textarea>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Antwort" required formControlName="answer"></textarea>
-    </mat-form-field>
+    <div *ngIf="this.questionForm.get('type').value === '2' else Elseblock">
+      <div formArrayName="answers">
+        <div *ngFor="let answer of answers.controls; let i=index" [formGroupName]="i">
 
-    <mat-form-field class="example-full-width">
-      <mat-select placeholder="Ausgang" required formControlName="outcome">
-        <mat-option>None</mat-option>
-        <mat-option value="{{out.id}}" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+          <button class="float-right" mat-raised-button color="warn" (click)="removeAnswer(i)">
+            <i class="material-icons">delete</i>
+          </button>
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Antwort" required formControlName="answer"></textarea>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-select placeholder="Ausgang" required formControlName="outcome">
+              <mat-option>None</mat-option>
+              <mat-option value="{{out.id}}" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <button mat-raised-button color="accent" [disabled]="!maxAnswers()" (click)="addAnswer()">
+        <i class="material-icons plus">add_box</i>
+      </button>
+    </div>
+
+    <ng-template #Elseblock>
+      <div formArrayName="answers">
+        <div *ngFor="let answer of answers.controls; let i=index" [formGroupName]="i">
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Antwort" required formControlName="answer"></textarea>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-select placeholder="Ausgang" required formControlName="outcome">
+              <mat-option>None</mat-option>
+              <mat-option value="{{out.id}}" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+    </ng-template>
+
+    <mat-divider></mat-divider>
 
     <button [disabled]="!questionForm.valid" mat-raised-button color="primary" (click)="create()">
       Hinzufügen

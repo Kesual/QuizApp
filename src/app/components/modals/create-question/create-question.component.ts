@@ -5,7 +5,7 @@ import {QuestionType} from '../../models/QuestionType';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Outcome} from '../../models/Outcome';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuizService} from '../../service/quiz.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class CreateQuestionComponent implements OnInit {
   public questionTypes: QuestionType[];
   public outcomes: Outcome[];
   public questionForm: FormGroup;
+  public answerCounter = 1;
 
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionComponent>,
@@ -42,10 +43,36 @@ export class CreateQuestionComponent implements OnInit {
 
     this.questionForm = this.fb.group({
       question: ['', [Validators.required]],
-      answer: ['', [Validators.required]],
       type: ['', [Validators.required]],
-      outcome: ['', [Validators.required]],
+      answers: this.fb.array([
+        this.answer
+      ]),
     });
+  }
+
+  get answers(): FormArray {
+    return this.questionForm.get('answers') as FormArray;
+  }
+
+  get answer(): FormGroup {
+    return this.fb.group({
+      answer: ['', [Validators.required]],
+      outcome: ['', [Validators.required]]
+    });
+  }
+
+  addAnswer() {
+    this.answers.push(this.answer);
+    this.answerCounter += 1;
+  }
+
+  removeAnswer(i: number) {
+    this.answers.removeAt(i);
+    this.answerCounter -= 1;
+  }
+
+  maxAnswers(): boolean {
+    return this.answerCounter <= 3;
   }
 
   onNoClick(): void {
@@ -61,14 +88,14 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   create() {
-    this.http.post(this.baseUrl + this.apiQuest, {data: this.questionForm.value, id: this.data})
-      .subscribe(
-        data => {
-          console.log('success', data);
-        },
-        error => console.log('oops', error)).add(() => {
-          this.service.getQuiz(this.service.quiz.id);
-          this.onNoClick();
-    });
+      this.http.post(this.baseUrl + this.apiQuest, {data: this.questionForm.value, id: this.data})
+        .subscribe(
+          data => {
+            console.log('success', data);
+          },
+          error => console.log('oops', error)).add(() => {
+        this.service.getQuiz(this.service.Quiz.id);
+        this.onNoClick();
+      });
   }
 }

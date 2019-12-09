@@ -46,7 +46,7 @@ import { DeleteQuizModalComponent } from './components/modals/delete-quiz-modal/
     CreateQuestionComponent,
     EndOfQuizModalComponent,
     AddQuizModalComponent,
-    DeleteQuizModalComponent
+    DeleteQuizModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {EditQuizComponent} from '../../../modals/edit-quiz/edit-quiz.component';
 import {MatDialog} from '@angular/material';
 import {QuizService} from '../../../service/quiz.service';
+import {Quiz} from '../../../models/Quiz';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,12 @@ export class DashboardComponent implements OnInit {
       this.qId = params.id;
     });
 
-    this.service.getQuiz(this.qId);
+    this.service.getQuiz(this.qId)
+      .subscribe((result: Quiz) => {
+        this.service.Quiz = result;
+      }).add(() => {
+      this.service.spinner = false;
+    });
   }
 
   openEditComponent() {
@@ -36,6 +42,8 @@ export class DashboardComponent implements OnInit {
   }
 
   startQuiz(): boolean {
-    return this.service.quiz.question.length !== 0;
+    if (this.service.Quiz) {
+      return this.service.Quiz.question.length !== 0;
+    }
   }
 }
