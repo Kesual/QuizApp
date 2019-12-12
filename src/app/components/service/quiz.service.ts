@@ -26,9 +26,14 @@ export class QuizService {
     this.quiz = q;
   }
 
-  getQuiz(qId: number): Observable<Quiz> {
+  getQuiz(qId: number) {
     this.spinner = true;
-
-    return this.http.get<Quiz>(this.baseUrl + this.api + '/' + qId);
+    this.http.get<Quiz>(this.baseUrl + this.api + '/' + qId)
+      .subscribe((r: Quiz) => {
+        this.Quiz = r;
+      })
+      .add(() => {
+        this.spinner = false;
+      });
   }
 }

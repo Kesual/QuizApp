@@ -30,6 +30,7 @@ import { CreateQuestionComponent } from './components/modals/create-question/cre
 import { EndOfQuizModalComponent } from './components/modals/end-of-quiz-modal/end-of-quiz-modal.component';
 import { AddQuizModalComponent } from './components/modals/add-quiz-modal/add-quiz-modal.component';
 import { DeleteQuizModalComponent } from './components/modals/delete-quiz-modal/delete-quiz-modal.component';
+import { EditQuestionComponent } from './components/modals/edit-question/edit-question.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { DeleteQuizModalComponent } from './components/modals/delete-quiz-modal/
     EndOfQuizModalComponent,
     AddQuizModalComponent,
     DeleteQuizModalComponent,
+    EditQuestionComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import { DeleteQuizModalComponent } from './components/modals/delete-quiz-modal/
     EndOfQuizModalComponent,
     AddQuizModalComponent,
     DeleteQuizModalComponent,
+    EditQuestionComponent,
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}

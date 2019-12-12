@@ -1,5 +1,5 @@
 
-<h1 mat-dialog-title>Quiz-Übersicht für {{service.quiz.name}}</h1>
+<h1 mat-dialog-title>Quiz-Übersicht für {{service.Quiz.name}}</h1>
 <div mat-dialog-content>
   <div class="container">
     <button title="Quiz löschen" class="float-right" mat-raised-button color="warn" (click)="openDeleteQuiz()">
@@ -14,12 +14,16 @@
         class="example-margin"
         color="primary"
         mode="indeterminate"
-        *ngIf="service.spinner">
+        *ngIf="service.spinner else Elseblock">
       </mat-progress-spinner>
 
-      <div class="list-group">
-        <div *ngFor="let question of service.quiz.question">
-        <div class="d-flex w-100 justify-content-between" >
+      <ng-template #Elseblock class="list-group">
+        <div *ngFor="let question of service.Quiz.question" >
+          <div id="{{question.id}}" class="hand"
+               (mouseover)="changeCol(question.id)"
+               (mouseout)="changeBack(question.id)"
+               (click)="openEditQuestion(question)">
+        <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">
             Frage {{question.id}}: {{question.value}}
           </h5>
@@ -40,8 +44,9 @@
               </small>
             </ng-template>
           </div>
+          </div>
         </div>
-      </div>
+      </ng-template>
     </cdk-virtual-scroll-viewport>
   </div>
 </div>

@@ -6,7 +6,7 @@
     <mat-form-field class="example-full-width">
       <mat-select placeholder="Fragentyp" required formControlName="type">
         <mat-option>None</mat-option>
-        <mat-option value="{{type.id}}" *ngFor="let type of questionTypes">{{type.type}}</mat-option>
+        <mat-option [value]="type.id" *ngFor="let type of questionTypes">{{type.type}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -14,7 +14,7 @@
       <textarea matInput placeholder="Frage" required formControlName="question"></textarea>
     </mat-form-field>
 
-    <div *ngIf="this.questionForm.get('type').value === '2' else Elseblock">
+    <div *ngIf="questionForm.get('type').value === 2 else Elseblock">
       <div formArrayName="answers">
         <div *ngFor="let answer of answers.controls; let i=index" [formGroupName]="i">
 
@@ -29,7 +29,7 @@
           <mat-form-field class="example-full-width">
             <mat-select placeholder="Ausgang" required formControlName="outcome">
               <mat-option>None</mat-option>
-              <mat-option value="{{out.id}}" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
+              <mat-option [value]="out.id" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -51,7 +51,7 @@
           <mat-form-field class="example-full-width">
             <mat-select placeholder="Ausgang" required formControlName="outcome">
               <mat-option>None</mat-option>
-              <mat-option value="{{out.id}}" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
+              <mat-option [value]="out.id" *ngFor="let out of outcomes">{{out.type ? 'Wahr' : 'Falsch'}}</mat-option>
             </mat-select>
           </mat-form-field>
 

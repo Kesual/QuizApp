@@ -16,6 +16,7 @@ export class SelectComponent implements OnInit {
   api = '/quiz';
   quiz: Quiz[];
   select = new FormControl('', Validators.required);
+  spinner = true;
 
   constructor(
     private http: HttpClient,
@@ -24,6 +25,8 @@ export class SelectComponent implements OnInit {
   ngOnInit() {
     this.getQuizes().subscribe((r: Quiz[]) => {
       this.quiz = r;
+    }).add(() => {
+      this.spinner = false;
     });
   }
 

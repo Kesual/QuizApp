@@ -7,6 +7,8 @@ import {
 import {CreateQuestionComponent} from '../create-question/create-question.component';
 import {DeleteQuizModalComponent} from '../delete-quiz-modal/delete-quiz-modal.component';
 import {QuizService} from '../../service/quiz.service';
+import {EditQuestionComponent} from '../edit-question/edit-question.component';
+import {Question} from '../../models/Question';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -33,7 +35,9 @@ export class EditQuizComponent implements OnInit {
     this.dialog.open(CreateQuestionComponent, {
       width: '600px',
       autoFocus: false,
-      data: this.service.quiz.id,
+      data: {
+        quizId: this.service.Quiz.id
+      },
     });
   }
 
@@ -41,7 +45,28 @@ export class EditQuizComponent implements OnInit {
     this.dialog.open(DeleteQuizModalComponent, {
       width: '300px',
       autoFocus: false,
-      data: this.service.quiz.id,
+      data: this.service.Quiz.id,
+    });
+  }
+
+  changeCol(n: number) {
+    const div = document.getElementById(String(n));
+    div.style.backgroundColor = 'rgb(98, 99, 99)';
+  }
+
+  changeBack(n: number) {
+    const div = document.getElementById(String(n));
+    div.style.backgroundColor = '';
+  }
+
+  openEditQuestion(q: Question) {
+    this.dialog.open(CreateQuestionComponent, {
+      width: '600px',
+      autoFocus: false,
+      data: {
+        quizId: this.service.Quiz.id,
+        question: q,
+      }
     });
   }
 }

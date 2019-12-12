@@ -25,7 +25,7 @@ export class PlayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.questionArray = this.service.quiz.question;
+    this.questionArray = this.service.Quiz.question;
     this.displayQuestion();
   }
 
@@ -47,7 +47,7 @@ export class PlayComponent implements OnInit {
 
   displayQuestion() {
 
-    if (this.service.quiz.question.length === 0) {
+    if (this.service.Quiz.question.length === 0) {
       this.endOfQuiz();
     } else {
       const rand = Math.floor(Math.random() * this.questionArray.length);
