@@ -7,7 +7,6 @@ import {
 import {CreateQuestionComponent} from '../create-question/create-question.component';
 import {DeleteQuizModalComponent} from '../delete-quiz-modal/delete-quiz-modal.component';
 import {QuizService} from '../../service/quiz.service';
-import {EditQuestionComponent} from '../edit-question/edit-question.component';
 import {Question} from '../../models/Question';
 
 @Component({
@@ -26,6 +25,11 @@ export class EditQuizComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  getIndex(id: number): number {
+    const finding = this.service.Quiz.question.find(e => e.id === id);
+    return this.service.Quiz.question.indexOf(finding) + 1;
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

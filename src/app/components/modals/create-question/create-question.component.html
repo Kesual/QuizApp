@@ -1,4 +1,5 @@
-<h1 mat-dialog-title>Neue Frage:</h1>
+<h1 mat-dialog-title *ngIf="!isEdit()">Frage bearbeiten</h1>
+<h1 mat-dialog-title *ngIf="isEdit()">Neue Frage</h1>
 <div mat-dialog-content>
 
   <form [formGroup]="questionForm">
@@ -69,4 +70,8 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Schließen</button>
+
+  <button mat-raised-button color="warn" *ngIf="!isEdit()" (click)="delete(this.data.question.id)">
+    <i class="material-icons">delete</i>
+  </button>
 </div>

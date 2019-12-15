@@ -8,7 +8,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatButtonModule,
-  MatCardModule, MatDialogModule,
+  MatCardModule, MatCheckboxModule, MatDialogModule,
   MatFormFieldModule,
   MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
@@ -30,8 +30,6 @@ import { CreateQuestionComponent } from './components/modals/create-question/cre
 import { EndOfQuizModalComponent } from './components/modals/end-of-quiz-modal/end-of-quiz-modal.component';
 import { AddQuizModalComponent } from './components/modals/add-quiz-modal/add-quiz-modal.component';
 import { DeleteQuizModalComponent } from './components/modals/delete-quiz-modal/delete-quiz-modal.component';
-import { EditQuestionComponent } from './components/modals/edit-question/edit-question.component';
-
 
 @NgModule({
   declarations: [
@@ -48,7 +46,6 @@ import { EditQuestionComponent } from './components/modals/edit-question/edit-qu
     EndOfQuizModalComponent,
     AddQuizModalComponent,
     DeleteQuizModalComponent,
-    EditQuestionComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +70,7 @@ import { EditQuestionComponent } from './components/modals/edit-question/edit-qu
     MatProgressSpinnerModule,
     MatTreeModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   entryComponents: [
     AnswerModalComponent,
@@ -81,7 +79,6 @@ import { EditQuestionComponent } from './components/modals/edit-question/edit-qu
     EndOfQuizModalComponent,
     AddQuizModalComponent,
     DeleteQuizModalComponent,
-    EditQuestionComponent,
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}

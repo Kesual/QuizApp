@@ -42,7 +42,7 @@ export class CreateQuestionComponent implements OnInit {
       this.outcomes = r;
     });
 
-    if (!this.data.question) {
+    if (this.isEdit()) {
       this.questionForm = this.fb.group({
         question: ['', [Validators.required]],
         type: ['', [Validators.required]],
@@ -59,6 +59,10 @@ export class CreateQuestionComponent implements OnInit {
       });
       this.openEditAnswers();
     }
+  }
+
+  isEdit(): boolean {
+    return !this.data.question;
   }
 
   get answers(): FormArray {
@@ -132,5 +136,17 @@ export class CreateQuestionComponent implements OnInit {
         this.onNoClick();
       });
     }
+  }
+
+  delete(id: number): void {
+    this.http.delete(this.baseUrl + '/question' + '/' + id)
+      .subscribe(
+        data => {
+          console.log('success', data);
+        },
+        error => console.log('oops', error)).add(() => {
+      this.service.getQuiz(this.service.Quiz.id);
+      this.onNoClick();
+    });
   }
 }

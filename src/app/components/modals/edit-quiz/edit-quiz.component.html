@@ -25,7 +25,7 @@
                (click)="openEditQuestion(question)">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">
-            Frage {{question.id}}: {{question.value}}
+            Frage {{getIndex(question.id)}}: {{question.value}}
           </h5>
           <small>{{question.questionType.type}}</small>
         </div>

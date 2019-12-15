@@ -10,32 +10,53 @@
   <mat-card class="mainCard">
     <mat-card-header>
       <mat-card-subtitle>
-        {{service.quiz.name}}
+        {{service.Quiz.name}}
       </mat-card-subtitle>
-      <mat-card-title>
-        Frage Nr. {{question.id}} :
-      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
+
       <div class="row">
         <h3>
           {{question.value}}
         </h3>
       </div>
-      <div class="row">
-        <mat-form-field class="example-full-width">
+
+
+      <!-- ------------------------------------- -->
+
+        <div class="row" *ngIf="isOpen() else Elseblock">
+          <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Antwort" [formControl]="answerField"></textarea>
-        </mat-form-field>
-      </div>
+          </mat-form-field>
+        </div>
+
+      <!-- ------------------------------------- -->
+
+      <ng-template #Elseblock>
+
+        <div class="row">
+          <div *ngFor="let answer of question.answer">
+            <section class="example-section">
+              <mat-checkbox [(ngModel)]="answerField[answer.id]" checked class="example-margin">
+                {{answer.value}}
+              </mat-checkbox>
+            </section>
+          </div>
+        </div>
+
+      </ng-template>
+
+      <!-- ------------------------------------- -->
+
 
       <div class="row">
-        <button [disabled]="!answerField.valid" mat-raised-button color="primary" (click)="check()">
+        <button [disabled]="!answerField.valid && isOpen()" mat-raised-button color="primary" (click)="check()">
           <mat-label>
             Überprüfen
           </mat-label>
         </button>
 
-        <button  class="rightButton" [disabled]="!nextQuestion" mat-raised-button color="primary" (click)="displayQuestion()">
+        <button  class="rightButton" [disabled]="!nextQuestion" mat-raised-button color="primary" (click)="displayQuestion(); answerField.reset()">
           <mat-label>
             Nächste Frage
           </mat-label>
