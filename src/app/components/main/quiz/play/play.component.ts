@@ -63,7 +63,7 @@ export class PlayComponent implements OnInit {
       let answerString = '';
       let numb = 1;
       this.question.answer.forEach((a: Answer) => {
-        answerString += 'Antwort ' + String(numb) + ') -> ' + a.outcome.type;
+        answerString += 'Antwort ' + String(numb) + ') ' + a.outcome.type + '.. ';
         numb++;
       });
 
@@ -125,5 +125,11 @@ export class PlayComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  resetAnswers() {
+    if (this.isOpen()) {
+      this.answerField.reset();
+    }
   }
 }

@@ -54,7 +54,7 @@
           </mat-label>
         </button>
 
-        <button  class="rightButton" [disabled]="!nextQuestion" mat-raised-button color="primary" (click)="displayQuestion(); answerField.reset()">
+        <button  class="rightButton" [disabled]="!nextQuestion" mat-raised-button color="primary" (click)="displayQuestion(); resetAnswers();">
           <mat-label>
             Nächste Frage
           </mat-label>
