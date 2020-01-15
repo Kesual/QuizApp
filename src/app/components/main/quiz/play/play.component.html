@@ -32,7 +32,7 @@
 
       <ng-template #Elseblock>
 
-        <div class="row">
+
           <div *ngFor="let answer of question.answer">
             <section class="example-section">
               <mat-checkbox [(ngModel)]="answerField[answer.id]" checked class="example-margin">
@@ -40,7 +40,7 @@
               </mat-checkbox>
             </section>
           </div>
-        </div>
+
 
       </ng-template>
 
@@ -48,7 +48,7 @@
 
 
       <div class="row">
-        <button [disabled]="!answerField.valid && isOpen()" mat-raised-button color="primary" (click)="check()">
+        <button [disabled]="canCheck()" mat-raised-button color="primary" (click)="check()">
           <mat-label>
             Überprüfen
           </mat-label>
@@ -63,4 +63,5 @@
     </mat-card-content>
   </mat-card>
 </div>
+
 <!--pre style="color: azure">{{quiz | json}}</pre-->

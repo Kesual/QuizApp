@@ -19,6 +19,7 @@ export class PlayComponent implements OnInit {
   answerField: any;
   nextQuestion = true;
   public points = 0;
+  checked = false;
 
   constructor(
     public service: QuizService,
@@ -35,6 +36,7 @@ export class PlayComponent implements OnInit {
   }
 
   check() {
+    this.checked = true;
     if (this.isOpen()) {
       const antwort = this.answerField.value;
       const richtig = this.question.answer[0].value;
@@ -56,8 +58,15 @@ export class PlayComponent implements OnInit {
         if (!(this.answerField[a.id] === a.outcome.type)) {
           richtig = false;
         }
-
       });
+
+      let answerString = '';
+      let numb = 1;
+      this.question.answer.forEach((a: Answer) => {
+        answerString += 'Antwort ' + String(numb) + ') -> ' + a.outcome.type;
+        numb++;
+      });
+
       if (richtig) {
         this.dialog.open(AnswerModalComponent, {
           width: '400px',
@@ -67,7 +76,7 @@ export class PlayComponent implements OnInit {
       } else {
         this.dialog.open(AnswerModalComponent, {
           width: '400px',
-          data: {result: 'Falsch'},
+          data: {result: 'Falsch', answer: answerString},
         });
       }
     }
@@ -79,6 +88,7 @@ export class PlayComponent implements OnInit {
   }
 
   displayQuestion() {
+    this.checked = false;
     if (this.service.Quiz.question.length === 0) {
       this.endOfQuiz();
     } else {
@@ -108,5 +118,12 @@ export class PlayComponent implements OnInit {
         this.answerField[a.id] = false;
       });
     }
+  }
+
+  canCheck(): boolean {
+    if (!this.answerField.valid && this.isOpen() || this.checked) {
+      return true;
+    }
+    return false;
   }
 }
