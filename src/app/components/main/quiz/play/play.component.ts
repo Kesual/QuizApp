@@ -19,6 +19,7 @@ export class PlayComponent implements OnInit {
   answerField: any;
   nextQuestion = true;
   public points = 0;
+  public reachablePoints: number;
   checked = false;
 
   constructor(
@@ -29,6 +30,7 @@ export class PlayComponent implements OnInit {
   ngOnInit() {
     this.questionArray = this.service.Quiz.question;
     this.displayQuestion();
+    this.reachablePoints = this.questionArray.length + 1;
   }
 
   isOpen(): boolean {
@@ -103,8 +105,9 @@ export class PlayComponent implements OnInit {
   endOfQuiz() {
     this.nextQuestion = false;
     this.dialog.open(EndOfQuizModalComponent, {
-      width: '500px',
-      data: {points: this.points}, disableClose: true
+      width: '600px',
+      data: {points: this.points, reachable: this.reachablePoints},
+      disableClose: true,
     });
   }
 
